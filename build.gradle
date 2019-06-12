@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'Gtest'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://repo.maven.apache.org/maven2/" }
+    //maven { url "https://mvnrepository.com/artifact/org.apache.tinkerpop/gremlin-driver/" }
+    
+}
+
+configurations {
+    all*.exclude module: 'spring-boot-starter-logging'
+    compile.exclude(group: 'ch.qos.logback')
+}
+
+group = 'com.cms'
+version = '0.0.1-RELEASE'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("com.microsoft.spring.data.gremlin:spring-data-gremlin:2.1.2")
+    compile "org.springframework.boot:spring-boot-configuration-processor"
+    compile group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '5.1'
+    compile group: 'org.apache.tinkerpop', name: 'gremlin-driver', version: '3.2.11'
+
+    testCompile('org.mockito:mockito-core:2.15.0')
+    testCompile('junit:junit:4.12')
+
+}

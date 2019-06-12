@@ -1,0 +1,7 @@
+gremlin:
+  endpoint: localhost
+  port: 7687
+  username: /dbs/neo4j/colls/neo4j
+  password: raghav123
+  sslEnabled: false
+  telemetryAllowed: true
